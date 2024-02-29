@@ -25,8 +25,7 @@ public class GridManager : MonoBehaviour
 
     public void InitGrid()
     {
-        _tiles = new GridTile[numRows + numColumns];
-
+        _tiles = new GridTile[30];
         for (int y = 0; y < numRows; y++)
         {
             for (int x = 0; x < numColumns; x++)
@@ -59,9 +58,10 @@ public class GridManager : MonoBehaviour
 
     public GridTile GetTile(Vector2Int pos)
     {
-        if (pos.x < 0 || pos.x >= numColumns || pos.y < 0 || pos.y >= numRows)
+        if (pos.x < 0 || pos.x > numColumns || pos.y < 0 || pos.y > numRows)
         {
             Debug.LogError("Invalid coordinate{pos}");
+            return null;
         }
         return _tiles[pos.y * numColumns + pos.x];
     }

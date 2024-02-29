@@ -12,6 +12,7 @@ public class SimonSays : MonoBehaviour
     private void OnEnable()
     {
         _gridManager.TileSelected += OnTileSelected;
+        NextPattern();
     }
 
     private void OnDisable()
@@ -58,8 +59,12 @@ public class SimonSays : MonoBehaviour
         foreach (var pos in positions)
         {
             GridTile tile = _gridManager.GetTile(pos);
-            yield return Co_FlashTile(tile, Color.green, 0.25f);
-            yield return new WaitForSeconds(0.5f);
+            if (tile != null)
+            {
+                yield return Co_FlashTile(tile, Color.green, 0.25f);
+                yield return new WaitForSeconds(0.5f);
+            }
+            
         }
 
         _patternPlaying = false;
