@@ -65,4 +65,24 @@ public class GridManager : MonoBehaviour
         }
         return _tiles[pos.y * numColumns + pos.x];
     }
+
+    public Vector2Int GetGridPosition(Vector3 worldPosition)
+    {
+        Vector3 localPosition = transform.InverseTransformPoint(worldPosition);
+        int x = Mathf.FloorToInt(localPosition.x);
+        int y = Mathf.FloorToInt(localPosition.y);
+        return new Vector2Int(x, y);
+    }
+
+    public bool IsValidGridPosition(Vector2Int gridPosition)
+    {
+        return gridPosition.x >= 0 && gridPosition.x < numColumns &&
+               gridPosition.y >= 0 && gridPosition.y < numRows;
+    }
+
+    public Vector3 GetWorldPosition(Vector2Int gridPosition)
+    {
+        return transform.TransformPoint(new Vector3(gridPosition.x, gridPosition.y));
+    }
+
 }
