@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1333869058268980518}
   - component: {fileID: 7210953369680705343}
   m_Layer: 0
-  m_Name: CyanWall
+  m_Name: PinkWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: db1a036c8eb0a1149b0a7c0ed1bfd3f0, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.97646546, a: 1}
+  m_Color: {r: 1, g: 0.05345905, b: 0.9173874, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

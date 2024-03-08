@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
 
     public void InitGrid()
     {
-        _tiles = new GridTile[30];
+        _tiles = new GridTile[numRows * numColumns];
         for (int y = 0; y < numRows; y++)
         {
             for (int x = 0; x < numColumns; x++)
