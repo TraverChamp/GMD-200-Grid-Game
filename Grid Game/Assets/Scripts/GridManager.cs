@@ -76,8 +76,8 @@ public class GridManager : MonoBehaviour
 
     public bool IsValidGridPosition(Vector2Int gridPosition)
     {
-        return gridPosition.x >= 0 && gridPosition.x < numColumns &&
-               gridPosition.y >= 0 && gridPosition.y < numRows;
+        return gridPosition.x >= 0 && gridPosition.x <= numColumns &&
+               gridPosition.y >= 0 && gridPosition.y <= numRows;
     }
 
     public Vector3 GetWorldPosition(Vector2Int gridPosition)
