@@ -7,7 +7,7 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private GameObject wallPrefab;
- 
+    bool isMoving=false;
     private Vector2Int currentGridPosition;
     private Vector2Int previousGridPosition;
     private Vector2Int velocity = new Vector2Int();
@@ -57,7 +57,10 @@ public class PlayerUnit : MonoBehaviour
             velocity.x = 1;
 
         }
-        MoveTo(currentGridPosition + velocity);
+        if (isMoving == false)
+        {
+            MoveTo(currentGridPosition + velocity);
+        }
     }
     private void MoveTo(Vector2Int targetGridPosition)
     {
@@ -85,12 +88,14 @@ public class PlayerUnit : MonoBehaviour
 
     private IEnumerator Co_MoveTo(Vector3 targetPosition)
     {
+        isMoving = true;
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPosition;
+        isMoving = false;
     }
     
 }
