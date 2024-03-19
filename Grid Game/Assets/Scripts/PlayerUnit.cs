@@ -7,36 +7,61 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private GameObject wallPrefab;
-
+    bool isMoving=false;
     private Vector2Int currentGridPosition;
     private Vector2Int previousGridPosition;
-
+    private Vector2Int velocity = new Vector2Int();
     private void Start()
     {
         currentGridPosition = _gridManager.GetGridPosition(transform.position);
         previousGridPosition = currentGridPosition;
+       
     }
 
     private void Update()
     {
+        /* if (Input.GetKeyDown(KeyCode.W))
+         {
+             MoveTo(currentGridPosition + Vector2Int.up);
+         }
+         else if (Input.GetKeyDown(KeyCode.A))
+         {
+             MoveTo(currentGridPosition + Vector2Int.left);
+         }
+         else if (Input.GetKeyDown(KeyCode.S))
+         {
+             MoveTo(currentGridPosition + Vector2Int.down);
+         }
+         else if (Input.GetKeyDown(KeyCode.D))
+         {
+             MoveTo(currentGridPosition + Vector2Int.right);
+         } */
         if (Input.GetKeyDown(KeyCode.W))
         {
-            MoveTo(currentGridPosition + Vector2Int.up);
+            velocity.y = 1;
+            velocity.x = 0;
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            MoveTo(currentGridPosition + Vector2Int.left);
+            velocity.y = 0;
+            velocity.x = -1;
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            MoveTo(currentGridPosition + Vector2Int.down);
+            velocity.y = -1;
+            velocity.x = 0;
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            MoveTo(currentGridPosition + Vector2Int.right);
+            velocity.y = 0;
+            velocity.x = 1;
+
+        }
+        if (isMoving == false)
+        {
+            MoveTo(currentGridPosition + velocity);
         }
     }
-
     private void MoveTo(Vector2Int targetGridPosition)
     {
         if (_gridManager.IsValidGridPosition(targetGridPosition))
@@ -48,7 +73,10 @@ public class PlayerUnit : MonoBehaviour
             StartCoroutine(Co_MoveTo(targetPosition));
 
             // Leave wall at previous position
-            LeaveWallAtPreviousPosition();
+            
+            
+                LeaveWallAtPreviousPosition();
+            
         }
     }
 
@@ -60,11 +88,14 @@ public class PlayerUnit : MonoBehaviour
 
     private IEnumerator Co_MoveTo(Vector3 targetPosition)
     {
+        isMoving = true;
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPosition;
+        isMoving = false;
     }
+    
 }

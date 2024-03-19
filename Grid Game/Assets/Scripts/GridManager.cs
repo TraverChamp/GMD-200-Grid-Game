@@ -8,9 +8,9 @@ public class GridManager : MonoBehaviour
 {
     public event Action<GridTile> TileSelected;
 
-    public int numRows = 5;
+    public int numRows = 50;
 
-    public int numColumns = 6;
+    public int numColumns = 60;
 
     public float padding = 0.1f;
 
@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
 
     public void InitGrid()
     {
-        _tiles = new GridTile[numRows * numColumns];
+        _tiles = new GridTile[300];
         for (int y = 0; y < numRows; y++)
         {
             for (int x = 0; x < numColumns; x++)
@@ -76,8 +76,8 @@ public class GridManager : MonoBehaviour
 
     public bool IsValidGridPosition(Vector2Int gridPosition)
     {
-        return gridPosition.x >= 0 && gridPosition.x < numColumns &&
-               gridPosition.y >= 0 && gridPosition.y < numRows;
+        return gridPosition.x >= 0 && gridPosition.x <= numColumns &&
+               gridPosition.y >= 0 && gridPosition.y <= numRows;
     }
 
     public Vector3 GetWorldPosition(Vector2Int gridPosition)
