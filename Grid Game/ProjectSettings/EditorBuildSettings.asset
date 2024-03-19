@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SimonSays.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Movable Grid.unity
+    guid: 44363d989f9825142a2b18e4abca97d0
+  - enabled: 1
+    path: Assets/Scenes/ExperimentTraver.unity
+    guid: cf7e9c5ec78a8694faa475a43737bc93
+  - enabled: 1
+    path: Assets/Scenes/LightCyclesTest.unity
+    guid: 2584b3c9898740d4a9557e546bd146d1
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 0fad0ed435435604c94259298bceffaa
   m_configObjects: {}
