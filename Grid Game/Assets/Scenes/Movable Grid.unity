@@ -312,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5acab0aed21a5743bae3668f8e3ec80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numRows: 5
-  numColumns: 6
+  numRows: 50
+  numColumns: 60
   padding: 0.1
   tilePrefab: {fileID: 6487326938782608158, guid: 39602da80515caf4095916481b552b72, type: 3}
   text: {fileID: 1926177218}
@@ -641,7 +641,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
