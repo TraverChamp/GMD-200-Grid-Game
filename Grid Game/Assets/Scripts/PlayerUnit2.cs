@@ -7,20 +7,21 @@ public class PlayerUnit2 : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private GameObject wallPrefab;
-
+    bool isMoving = false;
     private Vector2Int currentGridPosition;
     private Vector2Int previousGridPosition;
+    private Vector2Int velocity = new Vector2Int();
 
     private void Start()
     {
-        currentGridPosition = new Vector2Int(_gridManager.numColumns - 1, 0); // Bottom right corner
+        currentGridPosition = new Vector2Int(46, 3); // Bottom right corner
         previousGridPosition = currentGridPosition;
         transform.position = _gridManager.GetWorldPosition(currentGridPosition); // Set initial position
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        /*if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             MoveTo(currentGridPosition + Vector2Int.up);
         }
@@ -35,6 +36,31 @@ public class PlayerUnit2 : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             MoveTo(currentGridPosition + Vector2Int.right);
+        }*/
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            velocity.y = 1;
+            velocity.x = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            velocity.y = 0;
+            velocity.x = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            velocity.y = -1;
+            velocity.x = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            velocity.y = 0;
+            velocity.x = 1;
+
+        }
+        if (isMoving == false)
+        {
+            MoveTo(currentGridPosition + velocity);
         }
     }
 
@@ -61,11 +87,13 @@ public class PlayerUnit2 : MonoBehaviour
 
     private IEnumerator Co_MoveTo(Vector3 targetPosition)
     {
+        isMoving = true;
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPosition;
+        isMoving = false;
     }
 }
