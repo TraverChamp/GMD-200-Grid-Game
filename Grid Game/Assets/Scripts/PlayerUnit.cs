@@ -7,51 +7,35 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private GameObject wallPrefab;
-    bool isMoving=false;
+    bool isMoving = false;
     private Vector2Int currentGridPosition;
     private Vector2Int previousGridPosition;
     private Vector2Int velocity = new Vector2Int();
     private void Start()
     {
-        currentGridPosition = _gridManager.GetGridPosition(transform.position);
+        currentGridPosition = new Vector2Int(4, 3); // Bottom right corner
         previousGridPosition = currentGridPosition;
-       
+        transform.position = _gridManager.GetWorldPosition(currentGridPosition); // Set initial position
     }
 
     private void Update()
     {
-        /* if (Input.GetKeyDown(KeyCode.W))
-         {
-             MoveTo(currentGridPosition + Vector2Int.up);
-         }
-         else if (Input.GetKeyDown(KeyCode.A))
-         {
-             MoveTo(currentGridPosition + Vector2Int.left);
-         }
-         else if (Input.GetKeyDown(KeyCode.S))
-         {
-             MoveTo(currentGridPosition + Vector2Int.down);
-         }
-         else if (Input.GetKeyDown(KeyCode.D))
-         {
-             MoveTo(currentGridPosition + Vector2Int.right);
-         } */
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             velocity.y = 1;
             velocity.x = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             velocity.y = 0;
             velocity.x = -1;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             velocity.y = -1;
             velocity.x = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             velocity.y = 0;
             velocity.x = 1;
@@ -79,10 +63,10 @@ public class PlayerUnit : MonoBehaviour
             StartCoroutine(Co_MoveTo(targetPosition));
 
             // Leave wall at previous position
-            
-            
-                LeaveWallAtPreviousPosition();
-            
+
+
+            LeaveWallAtPreviousPosition();
+
         }
         //print(currentGridPosition);
     }
@@ -104,5 +88,4 @@ public class PlayerUnit : MonoBehaviour
         transform.position = targetPosition;
         isMoving = false;
     }
-    
 }

@@ -12,9 +12,10 @@ public class PlayerUnit2 : MonoBehaviour
     private Vector2Int currentGridPosition;
     private Vector2Int previousGridPosition;
     private Vector2Int velocity = new Vector2Int();
+
     private void Start()
     {
-        currentGridPosition = new Vector2Int(_gridManager.numColumns - 1, 0); // Bottom right corner
+        currentGridPosition = new Vector2Int(46, 3); // Bottom right corner
         previousGridPosition = currentGridPosition;
         transform.position = _gridManager.GetWorldPosition(currentGridPosition); // Set initial position
 
@@ -22,6 +23,7 @@ public class PlayerUnit2 : MonoBehaviour
 
     private void Update()
     {
+
         /* if (Input.GetKeyDown(KeyCode.W))
          {
              MoveTo(currentGridPosition + Vector2Int.up);
@@ -38,7 +40,10 @@ public class PlayerUnit2 : MonoBehaviour
          {
              MoveTo(currentGridPosition + Vector2Int.right);
          } */
+       
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
+
         {
             velocity.y = 1;
             velocity.x = 0;
@@ -55,6 +60,7 @@ public class PlayerUnit2 : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+
             velocity.y = 0;
             velocity.x = 1;
 
@@ -62,6 +68,7 @@ public class PlayerUnit2 : MonoBehaviour
         if (isMoving == false)
         {
             MoveTo(currentGridPosition + velocity);
+
             if (moveSpeed <= 20)
             {
                 moveSpeed += 0.02f;
