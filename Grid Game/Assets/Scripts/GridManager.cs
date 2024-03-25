@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
 
     public void InitGrid()
     {
-        _tiles = new GridTile[300];
+        _tiles = new GridTile[numRows*numColumns];
         for (int y = 0; y < numRows; y++)
         {
             for (int x = 0; x < numColumns; x++)
@@ -76,13 +76,13 @@ public class GridManager : MonoBehaviour
 
     public bool IsValidGridPosition(Vector2Int gridPosition)
     {
-        return gridPosition.x >= 0 && gridPosition.x <= numColumns &&
-               gridPosition.y >= 0 && gridPosition.y <= numRows;
+        return gridPosition.x >= 0 && gridPosition.x < numColumns &&
+               gridPosition.y >= 0 && gridPosition.y < numRows;
     }
 
     public Vector3 GetWorldPosition(Vector2Int gridPosition)
     {
-        return transform.TransformPoint(new Vector3(gridPosition.x, gridPosition.y));
+        return transform.TransformPoint(new Vector3(gridPosition.x*1.1f, gridPosition.y*1.1f)); // 0.1 is the padding, position calculation is 1+padding
     }
 
 }

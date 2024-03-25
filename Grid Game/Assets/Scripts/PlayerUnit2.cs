@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerUnit2 : MonoBehaviour
 {
+    
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private GameObject wallPrefab;
@@ -17,43 +18,49 @@ public class PlayerUnit2 : MonoBehaviour
         currentGridPosition = new Vector2Int(46, 3); // Bottom right corner
         previousGridPosition = currentGridPosition;
         transform.position = _gridManager.GetWorldPosition(currentGridPosition); // Set initial position
+
     }
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveTo(currentGridPosition + Vector2Int.up);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveTo(currentGridPosition + Vector2Int.left);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveTo(currentGridPosition + Vector2Int.down);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveTo(currentGridPosition + Vector2Int.right);
-        }*/
-        if (Input.GetKeyDown(KeyCode.W))
+
+        /* if (Input.GetKeyDown(KeyCode.W))
+         {
+             MoveTo(currentGridPosition + Vector2Int.up);
+         }
+         else if (Input.GetKeyDown(KeyCode.A))
+         {
+             MoveTo(currentGridPosition + Vector2Int.left);
+         }
+         else if (Input.GetKeyDown(KeyCode.S))
+         {
+             MoveTo(currentGridPosition + Vector2Int.down);
+         }
+         else if (Input.GetKeyDown(KeyCode.D))
+         {
+             MoveTo(currentGridPosition + Vector2Int.right);
+         } */
+       
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+
         {
             velocity.y = 1;
             velocity.x = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             velocity.y = 0;
             velocity.x = -1;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             velocity.y = -1;
             velocity.x = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+
             velocity.y = 0;
             velocity.x = 1;
 
@@ -61,9 +68,14 @@ public class PlayerUnit2 : MonoBehaviour
         if (isMoving == false)
         {
             MoveTo(currentGridPosition + velocity);
-        }
-    }
 
+            if (moveSpeed <= 20)
+            {
+                moveSpeed += 0.02f;
+            }
+        }
+
+    }
     private void MoveTo(Vector2Int targetGridPosition)
     {
         if (_gridManager.IsValidGridPosition(targetGridPosition))
@@ -75,7 +87,10 @@ public class PlayerUnit2 : MonoBehaviour
             StartCoroutine(Co_MoveTo(targetPosition));
 
             // Leave wall at previous position
+
+
             LeaveWallAtPreviousPosition();
+
         }
     }
 
@@ -96,4 +111,5 @@ public class PlayerUnit2 : MonoBehaviour
         transform.position = targetPosition;
         isMoving = false;
     }
+
 }

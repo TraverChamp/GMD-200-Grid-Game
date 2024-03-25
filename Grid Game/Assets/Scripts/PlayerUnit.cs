@@ -44,7 +44,12 @@ public class PlayerUnit : MonoBehaviour
         if (isMoving == false)
         {
             MoveTo(currentGridPosition + velocity);
+            if (moveSpeed <= 20)
+            {
+                moveSpeed += 0.02f;
+            }
         }
+       
     }
     private void MoveTo(Vector2Int targetGridPosition)
     {
@@ -52,6 +57,7 @@ public class PlayerUnit : MonoBehaviour
         {
             previousGridPosition = currentGridPosition;
             currentGridPosition = targetGridPosition;
+            
             Vector3 targetPosition = _gridManager.GetWorldPosition(targetGridPosition);
             StopAllCoroutines();
             StartCoroutine(Co_MoveTo(targetPosition));
@@ -62,6 +68,7 @@ public class PlayerUnit : MonoBehaviour
             LeaveWallAtPreviousPosition();
 
         }
+        //print(currentGridPosition);
     }
 
     private void LeaveWallAtPreviousPosition()
