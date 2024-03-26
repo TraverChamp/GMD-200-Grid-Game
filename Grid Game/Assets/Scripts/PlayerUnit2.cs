@@ -40,8 +40,8 @@ public class PlayerUnit2 : MonoBehaviour
          {
              MoveTo(currentGridPosition + Vector2Int.right);
          } */
-       
 
+        
         if (Input.GetKeyDown(KeyCode.UpArrow))
 
         {
@@ -80,13 +80,19 @@ public class PlayerUnit2 : MonoBehaviour
     {
         if (_gridManager.IsValidGridPosition(targetGridPosition))
         {
-            LeaveWallAtPreviousPosition();
-            previousGridPosition = currentGridPosition;
-            currentGridPosition = targetGridPosition;
-            Vector3 targetPosition = _gridManager.GetWorldPosition(targetGridPosition);
-            StopAllCoroutines();
-            StartCoroutine(Co_MoveTo(targetPosition));
-
+            if (velocity.y == 0 && velocity.x == 0)
+            {
+                print("Start Moving");
+            }
+            else
+            {
+                
+                previousGridPosition = currentGridPosition;
+                currentGridPosition = targetGridPosition;
+                Vector3 targetPosition = _gridManager.GetWorldPosition(targetGridPosition);
+                StopAllCoroutines();
+                StartCoroutine(Co_MoveTo(targetPosition));
+            }
             // Leave wall at previous position
 
 
@@ -111,9 +117,10 @@ public class PlayerUnit2 : MonoBehaviour
         }
         transform.position = targetPosition;
         isMoving = false;
+        LeaveWallAtPreviousPosition();
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collision detected with: " + collision.gameObject.name);
 
@@ -123,8 +130,8 @@ public class PlayerUnit2 : MonoBehaviour
             transform.position = _gridManager.GetWorldPosition(new Vector2Int(46, 27)); // Player 2 initial position
             _gridManager.ResetPlayerWalls();
         }
-    } */
-    private void OnCollisionEnter2D(Collision2D collision)
+    } 
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision detected with: " + collision.gameObject.name);
 
@@ -134,5 +141,5 @@ public class PlayerUnit2 : MonoBehaviour
             transform.position = _gridManager.GetWorldPosition(new Vector2Int(46, 27)); // Player 2 initial position
             _gridManager.ResetPlayerWalls();
         }
-    }
+    } */
 }
