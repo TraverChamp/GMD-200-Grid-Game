@@ -90,14 +90,15 @@ public class PlayerUnit : MonoBehaviour
         isMoving = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-        if (collision.CompareTag("Wall"))
+        if (collision.otherCollider.CompareTag("Wall"))
         {
             // Reset the player to the initial position
-            transform.position = _gridManager.GetWorldPosition(new Vector2Int(14, 27)); // Player 1 initial position
+            transform.position = _gridManager.GetWorldPosition(new Vector2Int(46, 27)); // Player 2 initial position
             _gridManager.ResetPlayerWalls();
         }
     }
