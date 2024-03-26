@@ -55,6 +55,7 @@ public class PlayerUnit : MonoBehaviour
     {
         if (_gridManager.IsValidGridPosition(targetGridPosition))
         {
+            LeaveWallAtPreviousPosition();
             previousGridPosition = currentGridPosition;
             currentGridPosition = targetGridPosition;
             
@@ -65,7 +66,7 @@ public class PlayerUnit : MonoBehaviour
             // Leave wall at previous position
 
 
-            LeaveWallAtPreviousPosition();
+            
 
         }
         //print(currentGridPosition);
