@@ -12,8 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial Screen.unity
     guid: f2ae9be74896897408a50f3d2aff354b
   - enabled: 1
+    path: Assets/Scenes/Map Select.unity
+    guid: 29eb67107bbec7742a1c07560fbd4d6c
+  - enabled: 1
     path: Assets/Scenes/Movable Grid.unity
     guid: 44363d989f9825142a2b18e4abca97d0
+  - enabled: 1
+    path: Assets/Scenes/Orbit.unity
+    guid: addc4072e952e2a49b9353707bab77d3
+  - enabled: 1
+    path: Assets/Scenes/Equal Sign.unity
+    guid: 2269bf83cc1e7ce47a79a33397341e34
   - enabled: 1
     path: Assets/Scenes/EndP1.unity
     guid: ac2c04613c46dfa4a8bbeee02ed89480
