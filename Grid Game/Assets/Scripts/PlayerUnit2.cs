@@ -15,7 +15,7 @@ public class PlayerUnit2 : MonoBehaviour
 
     private void Start()
     {
-        currentGridPosition = new Vector2Int(46, 3); // Bottom right corner
+        currentGridPosition = new Vector2Int(46, 27); // Bottom right corner
         previousGridPosition = currentGridPosition;
         transform.position = _gridManager.GetWorldPosition(currentGridPosition); // Set initial position
 
