@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
+    public GameManager gameManager;
+
     //Movement keys
     public KeyCode upKey;
     public KeyCode downKey;
@@ -82,16 +84,6 @@ public class Move : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D co)
-    {
-       if (co != wall)
-        {
-            GameObject.Find("player1").GetComponent<Rigidbody2D>().velocity = new Vector2();
-            GameObject.Find("player2").GetComponent<Rigidbody2D>().velocity = new Vector2();
-            atEnd = true;
-        }
-    }
-
     void OnGUI() //Shows win UI when atEnd is true
     {
         if (atEnd)
@@ -109,6 +101,16 @@ public class Move : MonoBehaviour
                 Application.Quit();
             }
             GUI.EndGroup();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D co)
+    {
+        if (co != wall)
+        {
+            GameObject.Find("player1").GetComponent<Rigidbody2D>().velocity = new Vector2();
+            GameObject.Find("player2").GetComponent<Rigidbody2D>().velocity = new Vector2();
+            gameManager.PlayerWon(1); // Notify GameManager that Player 1 won
         }
     }
 }

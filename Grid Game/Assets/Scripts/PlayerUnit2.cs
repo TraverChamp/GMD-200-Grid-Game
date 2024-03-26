@@ -112,4 +112,16 @@ public class PlayerUnit2 : MonoBehaviour
         isMoving = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Collision detected with: " + collision.gameObject.name);
+
+        if (collision.CompareTag("Wall"))
+        {
+            // Reset the player to the initial position
+            transform.position = _gridManager.GetWorldPosition(new Vector2Int(46, 27)); // Player 2 initial position
+            _gridManager.ResetPlayerWalls();
+        }
+    }
+
 }

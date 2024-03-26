@@ -85,4 +85,13 @@ public class GridManager : MonoBehaviour
         return transform.TransformPoint(new Vector3(gridPosition.x*1.1f, gridPosition.y*1.1f)); // 0.1 is the padding, position calculation is 1+padding
     }
 
+    public void ResetPlayerWalls()
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        foreach (GameObject wall in walls)
+        {
+            Destroy(wall);
+        }
+    }
+
 }
